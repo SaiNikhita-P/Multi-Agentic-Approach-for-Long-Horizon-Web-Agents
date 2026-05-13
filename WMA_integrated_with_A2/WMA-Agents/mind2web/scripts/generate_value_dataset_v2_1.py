@@ -4,12 +4,6 @@ import re
 from openai import OpenAI
 from mind2web.utils.llm import extract_from_response
 
-# =========================
-# Config
-# =========================
-
-# INPUT_PATH = "../data/transitions/wm_raw_transitions.jsonl"
-# OUTPUT_PATH = "../data/value/value_dataset_branching.jsonl"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 INPUT_PATH = os.path.join(BASE_DIR, "data", "transitions", "wm_raw_transitions.jsonl")
@@ -20,15 +14,6 @@ TOP_K = 3
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
-
-# =========================
-# Helper
-# =========================
-
-# def normalize_action(action):
-#     return action.strip().lower()
-
-
 
 def normalize_action(action: str) -> str:
     """
@@ -44,28 +29,24 @@ def normalize_action(action: str) -> str:
 
     action = action.strip().lower()
 
-    # 1️⃣ Extract numeric id (most reliable signal)
+    # Extract numeric id (most reliable signal)
     id_match = re.search(r"\b\d+\b", action)
     if id_match:
         return id_match.group(0)
 
-    # 2️⃣ Extract id=XXX format
+    # Extract id=XXX format
     id_match = re.search(r"id\s*=\s*(\d+)", action)
     if id_match:
         return id_match.group(1)
 
-    # 3️⃣ Extract inside SELECT [136]
+    # Extract inside SELECT [136]
     bracket_match = re.search(r"\[(\d+)\]", action)
     if bracket_match:
         return bracket_match.group(1)
 
-    # 4️⃣ Fallback: remove special chars and spaces
+    # Fallback: remove special chars and spaces
     action = re.sub(r"[^\w]", "", action)
     return action
-
-# =========================
-# Load existing dataset
-# =========================
 
 existing = set()
 existing_counts = {}
@@ -91,10 +72,6 @@ if os.path.exists(OUTPUT_PATH):
 
 print("Existing samples:", len(existing))
 
-# =========================
-# Build Dataset
-# =========================
-
 total = 0
 
 with open(INPUT_PATH, "r") as f_in, open(OUTPUT_PATH, "a") as f_out:
@@ -118,10 +95,6 @@ with open(INPUT_PATH, "r") as f_in, open(OUTPUT_PATH, "a") as f_out:
 
             o_t = step["o_t"]
             a_gt = step["a_t"]
-
-            # -------------------------
-            # 1. Query policy model
-            # -------------------------
 
             policy_prompt = f"""
 Objective: {intent}
@@ -150,10 +123,6 @@ Suggest next action.
                     candidate_actions.append(parsed)
 
             candidate_actions = candidate_actions[:TOP_K]
-
-            # -------------------------
-            # 2. Assign rewards
-            # -------------------------
 
             for action in candidate_actions:
                 key = (intent, step_idx, normalize_action(action))
@@ -191,6 +160,6 @@ Predict the reward.
                 existing.add(key)
                 existing_counts[step_key] = existing_counts.get(step_key, 0) + 1
 
-print("✅ Branching value dataset created.")
+print("Branching value dataset created.")
 print("Total examples:", total)
 print("Saved to:", OUTPUT_PATH)

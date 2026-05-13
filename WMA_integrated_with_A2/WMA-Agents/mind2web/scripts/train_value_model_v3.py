@@ -11,7 +11,6 @@ BASE_MODEL = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 DATA_PATH = "../data/value/value_dataset_clean.jsonl"
 SAVE_PATH = "../models/value_model_v3"
-# TEST_SPLIT_PATH = "../data/value/value_test_split.jsonl"
 
 BATCH_SIZE = 2
 EPOCHS = 15
@@ -21,11 +20,6 @@ MAX_LENGTH = 1024
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 os.makedirs(SAVE_PATH, exist_ok=True)
-
-
-# =========================
-# Dataset
-# =========================
 
 class ValueDataset(Dataset):
 
@@ -69,11 +63,6 @@ class ValueDataset(Dataset):
             "attention_mask": encoding["attention_mask"].squeeze(0),
             "reward": torch.tensor(ex["reward"], dtype=torch.float32)
         }
-
-
-# =========================
-# Value Model
-# =========================
 
 class LlamaValueModel(nn.Module):
 
@@ -124,41 +113,14 @@ tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 tokenizer.pad_token = tokenizer.eos_token
 
 
-# =========================
-# Dataset
-# =========================
-
 dataset = ValueDataset(DATA_PATH, tokenizer)
 
-# train_size = int(0.8 * len(dataset))
-# test_size = len(dataset) - train_size
-
-# train_dataset, test_dataset = random_split(
-#     dataset,
-#     [train_size, test_size],
-#     generator=torch.Generator().manual_seed(42)
-# )
-
-# print(f"Train size: {train_size}")
-# print(f"Test size: {test_size}")
-
-# with open(TEST_SPLIT_PATH, "w") as f:
-#     for idx in test_dataset.indices:
-#         json.dump(dataset.samples[idx], f)
-#         f.write("\n")
-
-# print("Test split saved to:", TEST_SPLIT_PATH)
 
 loader = DataLoader(
     dataset,
     batch_size=BATCH_SIZE,
     shuffle=True
 )
-
-
-# =========================
-# Model
-# =========================
 
 print("Loading model...")
 
@@ -170,11 +132,6 @@ optimizer = torch.optim.AdamW(
 )
 
 loss_fn = nn.MSELoss()
-
-
-# =========================
-# Training
-# =========================
 
 print("Starting training...")
 
@@ -207,11 +164,6 @@ for epoch in range(EPOCHS):
         total_loss += loss.item()
 
     print(f"Epoch {epoch+1} | Avg Loss: {total_loss/len(loader):.6f}")
-
-
-# =========================
-# Save model
-# =========================
 
 torch.save(
     model.value_head.state_dict(),

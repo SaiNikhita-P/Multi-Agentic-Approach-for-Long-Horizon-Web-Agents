@@ -3,10 +3,6 @@ import torch.nn as nn
 import json
 from transformers import AutoTokenizer, AutoModel
 
-# =========================
-# Config
-# =========================
-
 BASE_MODEL = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 MODEL_PATH = "../models/value_model_v3/value_head_v3_1.pt"
@@ -16,11 +12,6 @@ NUM_SAMPLES = 20
 MAX_LENGTH = 1024
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-
-# =========================
-# Value Model Definition
-# =========================
 
 class LlamaValueModel(nn.Module):
 
@@ -59,20 +50,12 @@ class LlamaValueModel(nn.Module):
 
         return value.squeeze(-1)
 
-
-# =========================
-# Load tokenizer
-# =========================
-
 print("Loading tokenizer...")
 
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 tokenizer.pad_token = tokenizer.eos_token
 
 
-# =========================
-# Load model
-# =========================
 
 print("Loading value model...")
 
@@ -83,20 +66,11 @@ model.value_head.load_state_dict(torch.load(MODEL_PATH))
 model.eval()
 
 
-# =========================
-# Load dataset
-# =========================
-
 samples = []
 
 with open(DATA_PATH) as f:
     for line in f:
         samples.append(json.loads(line))
-
-
-# =========================
-# Test samples
-# =========================
 
 print("\nTesting value predictions\n")
 

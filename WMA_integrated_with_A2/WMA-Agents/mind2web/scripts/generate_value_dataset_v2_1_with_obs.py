@@ -6,11 +6,6 @@ from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
-
-# =========================
-# Config
-# =========================
-
 BASE_MODEL = "meta-llama/Meta-Llama-3-8B-Instruct"
 WORLD_MODEL_PATH = "../models/world_model"
 
@@ -22,19 +17,9 @@ MAX_NEW_TOKENS = 200
 
 os.makedirs(os.path.dirname(OUTPUT_DATASET), exist_ok=True)
 
-
-# =========================
-# Load tokenizer
-# =========================
-
 print("Loading tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 tokenizer.pad_token = tokenizer.eos_token
-
-
-# =========================
-# Load model
-# =========================
 
 print("Loading base model...")
 
@@ -50,11 +35,6 @@ model = PeftModel.from_pretrained(base_model, WORLD_MODEL_PATH)
 model.config.use_cache = True
 model.eval()
 
-
-# =========================
-# Parsing helpers
-# =========================
-
 def parse_input(text):
 
     obs = text.split("Current Observation:")[1].split("Current Action:")[0].strip()
@@ -62,11 +42,6 @@ def parse_input(text):
     action = text.split("Current Action:")[1].split("Predict")[0].strip()
 
     return obs, action
-
-
-# =========================
-# Prompt builder
-# =========================
 
 def build_prompt(intent, obs, action):
 
@@ -79,11 +54,6 @@ def build_prompt(intent, obs, action):
         "Predict the next observation.\n\n"
         "Assistant:\n"
     )
-
-
-# =========================
-# Batch prediction
-# =========================
 
 def predict_batch(prompts):
 
@@ -119,20 +89,10 @@ def predict_batch(prompts):
 
     return predictions
 
-
-# =========================
-# Load dataset
-# =========================
-
 print("Loading dataset...")
 
 with open(INPUT_DATASET) as f:
     dataset = [json.loads(line) for line in f]
-
-
-# =========================
-# Process dataset
-# =========================
 
 print("Running world model inference...")
 

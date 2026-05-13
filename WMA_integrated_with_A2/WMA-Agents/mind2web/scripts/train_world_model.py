@@ -10,20 +10,12 @@ from transformers import (
 )
 from peft import LoraConfig, get_peft_model
 
-# =========================
-# Config
-# =========================
-
 MODEL_NAME = "meta-llama/Meta-Llama-3-8B-Instruct"
 DATA_PATH = "../data/abstracted/wm_transition_abstraction.jsonl"
 OUTPUT_DIR = "../models/world_model"
 # TEST_DATA_PATH = "../data/abstracted/test_split.jsonl"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-# =========================
-# Load Dataset
-# =========================
 
 dataset = load_dataset(
     "json",
@@ -33,28 +25,12 @@ dataset = load_dataset(
 
 # dataset_split = dataset.train_test_split(test_size=0.2, seed=42)
 
-# train_dataset = dataset_split["train"]
-# test_dataset = dataset_split["test"]
-
-# print(f"Train size: {len(train_dataset)}")
-# print(f"Test size: {len(test_dataset)}")
-
-# test_dataset.to_json(TEST_DATA_PATH)
-
-# =========================
-# Load Tokenizer
-# =========================
-
 tokenizer = AutoTokenizer.from_pretrained(
     MODEL_NAME,
     use_fast=True
 )
 
 tokenizer.pad_token = tokenizer.eos_token
-
-# =========================
-# Format Examples
-# =========================
 
 def format_example(example):
     text = (
@@ -67,12 +43,6 @@ def format_example(example):
     return {"text": text}
 
 dataset = dataset.map(format_example)
-
-# =========================
-# Tokenization
-# =========================
-
-#reduced to 512 for memory efficiency reasons!
 
 def tokenize(example):
     return tokenizer(
@@ -88,10 +58,6 @@ dataset = dataset.map(
     remove_columns=dataset.column_names
 )
 
-# =========================
-# Load Base Model
-# =========================
-
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME,
     torch_dtype=torch.float16,
@@ -100,10 +66,6 @@ model = AutoModelForCausalLM.from_pretrained(
 # Enable gradient checkpointing
 model.gradient_checkpointing_enable()
 model.config.use_cache = False
-
-# =========================
-# Apply LoRA
-# =========================
 
 lora_config = LoraConfig(
     r=16,
@@ -117,9 +79,6 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
-# =========================
-# Training Arguments
-# =========================
 # Smaller batch, larger accumulation = stable memory
 
 training_args = TrainingArguments(
@@ -138,18 +97,10 @@ training_args = TrainingArguments(
     optim="adamw_torch",
 )
 
-# =========================
-# Data Collator
-# =========================
-
 data_collator = DataCollatorForLanguageModeling(
     tokenizer=tokenizer,
     mlm=False,
 )
-
-# =========================
-# Trainer
-# =========================
 
 trainer = Trainer(
     model=model,
@@ -158,17 +109,9 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-# =========================
-# Train
-# =========================
-
 trainer.train()
-
-# =========================
-# Save LoRA Adapter
-# =========================
 
 model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
 
-print("✅ World model fine-tuned and saved.")
+print("World model fine-tuned and saved.")

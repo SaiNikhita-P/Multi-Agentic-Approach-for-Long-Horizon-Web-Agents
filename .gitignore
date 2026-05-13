@@ -29,6 +29,7 @@ WMA_integrated_with_A2/WMA-Agents/mind2web/scripts/world_model_eval.py
 WMA_integrated_with_A2/WMA-Agents/mind2web/workflow
 WMA_integrated_with_A2/WMA-Agents/mind2web/abs_induction_qwen.py
 WMA_integrated_with_A2/WMA-Agents/mind2web/check_missing_scores.py
+WMA_integrated_with_A2/WMA-Agents/mind2web/scripts/test_value_model.py
 
 
 #Files with results but due to memory constraints we are not adding
