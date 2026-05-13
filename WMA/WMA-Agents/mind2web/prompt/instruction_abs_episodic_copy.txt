@@ -1,0 +1,15 @@
+You are updating an abstraction to help solve the next task.
+
+RULES:
+- Keep it hierarchical
+- Keep it concise
+- Include useful patterns
+
+FORMAT:
+{Operation_type} [{element_id}] {Operation_value}
+
+IMPORTANT:
+- Do NOT explain
+- Do NOT repeat instructions
+
+Output ONLY the updated abstraction.

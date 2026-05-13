@@ -1,0 +1,41 @@
+<Task>
+Refine an existing DOMAIN-LEVEL abstraction using a new task.
+
+The refined abstraction should improve its usefulness for
+future tasks by increasing clarity, coverage, and generality.
+
+<Abstraction Requirements>
+
+1. Preserve abstraction
+   - Do not introduce UI elements
+   - Do not introduce element identifiers
+
+2. Evolution
+   - Incorporate new constraints if they generalize
+   - Add optional steps when applicable
+   - Do not overfit to a single task
+
+3. Assistance
+   - The updated abstraction should help solve similar future tasks
+   - Maintain hierarchical organization
+
+<Output Format>
+
+- Numbered hierarchical steps
+- Intent-level descriptions only
+- No website-specific references
+
+<Example>
+
+Existing abstraction:
+1. Specify task intent
+2. Specify location
+3. Finalize selection
+
+After refinement:
+1. Specify task intent
+2. Specify mandatory constraints
+   - Location
+   - Time
+3. Specify optional preferences
+4. Finalize selection

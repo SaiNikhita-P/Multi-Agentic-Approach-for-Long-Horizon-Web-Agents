@@ -1,0 +1,5 @@
+Example:
+
+Action: CLICK [123]
+Action: TYPE [456] New York
+Action: CLICK [789]

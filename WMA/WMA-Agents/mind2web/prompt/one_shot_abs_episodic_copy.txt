@@ -1,0 +1,6 @@
+Example:
+
+Action: CLICK [element_id]
+Action: TYPE [element_id] {origin}
+Action: TYPE [element_id] {destination}
+Action: CLICK [element_id]

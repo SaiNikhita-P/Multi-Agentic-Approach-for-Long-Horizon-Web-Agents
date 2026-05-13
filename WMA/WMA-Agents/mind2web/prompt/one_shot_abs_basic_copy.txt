@@ -1,0 +1,5 @@
+Example abstraction:
+
+Action: CLICK [element_id]
+Action: TYPE [element_id] {location}
+Action: CLICK [element_id]

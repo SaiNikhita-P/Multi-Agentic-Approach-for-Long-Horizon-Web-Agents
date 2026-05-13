@@ -6,6 +6,42 @@ __pycache__/
 # C extensions
 *.so
 
+#Unnecessary files
+WMA/WMA-Agents/mind2web/data/value/value_dataset_v2_1_copy.jsonl
+WMA/WMA-Agents/mind2web/data/value/value_dataset_v2_1_with_pred_obs.jsonl
+WMA/WMA-Agents/mind2web/data/value/value_dataset_v2.jsonl
+WMA/WMA-Agents/mind2web/data/value/value_dataset.jsonl
+WMA/WMA-Agents/mind2web/results/calc_score_modified.py
+WMA/WMA-Agents/mind2web/results/comparision.py
+WMA/WMA-Agents/mind2web/results/count_success.py
+WMA/WMA-Agents/mind2web/results/count.py
+WMA/WMA-Agents/mind2web/scripts/analyse_bias_value_dataset_v2.py
+WMA/WMA-Agents/mind2web/scripts/analyse_branching_value_dataset.py
+WMA/WMA-Agents/mind2web/scripts/analyse_value_dataset.py
+WMA/WMA-Agents/mind2web/scripts/analyse.py
+WMA/WMA-Agents/mind2web/scripts/append_world_model_predictions.py
+WMA/WMA-Agents/mind2web/scripts/generate_value_dataset_v2.py
+WMA/WMA-Agents/mind2web/scripts/generate_value_dataset.py
+WMA/WMA-Agents/mind2web/scripts/test_value_model_v2_1.py
+WMA/WMA-Agents/mind2web/scripts/test_value_model_v2.py
+WMA/WMA-Agents/mind2web/scripts/train_value_model.py
+WMA/WMA-Agents/mind2web/scripts/world_model_eval.py
+WMA/WMA-Agents/mind2web/workflow
+WMA/WMA-Agents/mind2web/abs_induction_qwen.py
+WMA/WMA-Agents/mind2web/check_missing_scores.py
+
+
+#Files with results but due to memory constraints we are not adding
+WMA/WMA-Agents/mind2web/results/gpt-3.5-turbo
+WMA/WMA-Agents/abstraction
+WMA/WMA-Agents/results
+WMA/WMA-Agents/mind2web/data/test_domain
+WMA/WMA-Agents/mind2web/data/test_task
+WMA/WMA-Agents/mind2web/data/test_website
+WMA/WMA-Agents/mind2web/data/train
+
+
+
 # Distribution / packaging
 .Python
 build/

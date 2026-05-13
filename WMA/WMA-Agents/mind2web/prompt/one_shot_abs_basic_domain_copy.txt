@@ -1,0 +1,8 @@
+Example:
+
+1. Identify task intent
+2. Specify mandatory constraints
+   - Location
+   - Time
+3. Apply optional preferences
+4. Finalize selection

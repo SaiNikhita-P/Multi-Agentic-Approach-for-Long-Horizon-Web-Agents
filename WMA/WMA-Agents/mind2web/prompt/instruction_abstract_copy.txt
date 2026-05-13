@@ -1,0 +1,12 @@
+Extract reusable workflows from given tasks.
+
+RULES:
+- Each workflow must have at least 2 steps
+- Use variable placeholders (e.g., {location}, {date})
+- Avoid duplicates
+- Keep workflows concise
+
+IMPORTANT:
+- Output ONLY workflows
+- Do NOT explain
+- Do NOT describe reasoning

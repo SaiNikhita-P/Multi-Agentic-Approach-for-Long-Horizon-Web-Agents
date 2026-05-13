@@ -1,0 +1,42 @@
+<Task>
+Integrate WEBSITE-LEVEL abstractions into a DOMAIN-LEVEL abstraction.
+
+The goal is to refine a reusable abstraction that captures
+domain knowledge across multiple websites and tasks.
+
+<Abstraction Requirements>
+
+1. Abstraction level
+   - DO NOT include element_id
+   - DO NOT include UI components (button, span, div, textbox, etc.)
+   - DO NOT include website-specific labels or layouts
+
+2. Representation
+   - Use intent-level actions (e.g., "Specify location", "Select task type")
+   - Describe procedures in abstract steps
+   - Use placeholders instead of constants (origin, destination, date)
+
+3. Hierarchy
+   - Higher levels represent task intent
+   - Middle levels represent constraint specification
+   - Lower levels represent optional refinements
+
+4. Generalization
+   - Merge equivalent actions across websites
+   - Remove task-specific details
+   - Focus on what the user is trying to achieve
+
+<Output Format>
+
+- Use numbered hierarchical steps
+- Natural language only
+- No Action syntax
+- No element identifiers
+
+<Example>
+
+BAD:
+Action: CLICK [1234] ([textbox] City -> TYPE)
+
+GOOD:
+Specify location constraint

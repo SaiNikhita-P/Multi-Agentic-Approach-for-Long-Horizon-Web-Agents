@@ -1,0 +1,18 @@
+You are given:
+- Previous abstraction
+- New task
+
+Update the abstraction.
+
+RULES:
+- Keep it hierarchical
+- Keep it concise
+- Follow this format:
+
+{Operation_type} [{element_id}] {Operation_value}
+
+- If operation is CLICK, do not include value
+- Do NOT explain
+- Do NOT repeat instructions
+
+Output ONLY the updated abstraction.

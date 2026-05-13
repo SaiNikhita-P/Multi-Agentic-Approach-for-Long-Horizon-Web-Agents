@@ -1,0 +1,18 @@
+You are refining a DOMAIN-LEVEL abstraction.
+
+RULES:
+- Do NOT include element_id
+- Do NOT include UI elements
+- Use intent-level steps
+- Use placeholders (origin, destination, date)
+
+STRUCTURE:
+1. Task intent
+2. Mandatory constraints
+3. Optional preferences
+4. Final action
+
+IMPORTANT:
+- Output ONLY the abstraction
+- Use numbered steps
+- Do NOT explain

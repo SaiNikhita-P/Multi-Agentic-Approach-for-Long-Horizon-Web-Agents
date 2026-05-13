@@ -1,0 +1,43 @@
+## Query 2: Select a high-speed train ticket with a departure time constraint from Shanghai to Beijing.
+
+<Split token>
+
+1. Select task intent
+   - Determine that the task involves booking transportation
+
+2. Specify constraints
+   2.1 Location constraints
+       - Define origin location
+       - Define destination location
+
+   2.2 Temporal constraints
+       - Specify an upper bound on departure time
+
+3. Execute search or retrieval
+   - Retrieve all options that satisfy mandatory constraints
+
+4. Optimize results
+   - Rank options by travel speed or journey duration
+   - Optionally apply cost-based ranking if multiple options remain
+
+5. Finalize selection
+   - Select the option that satisfies all constraints and optimizations
+
+<Split token>
+
+1. Identify transportation booking intent
+   - Recognize the task as a train ticket reservation
+
+2. Apply mandatory constraints
+   2.1 Set origin and destination
+       - Origin: Shanghai
+       - Destination: Beijing
+
+   2.2 Apply departure time constraint
+       - Exclude options departing after the specified time threshold
+
+3. Prioritize high-speed options
+   - Prefer services classified as high-speed
+
+4. Complete selection
+   - Confirm the best available option that satisfies all constraints

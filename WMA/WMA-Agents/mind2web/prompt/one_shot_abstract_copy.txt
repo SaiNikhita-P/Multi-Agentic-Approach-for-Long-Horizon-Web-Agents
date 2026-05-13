@@ -1,0 +1,49 @@
+Website: Travel, Airlines
+
+Example Tasks and Actions:
+
+Task: Find flights between two cities
+Actions:
+CLICK departure field
+TYPE origin city
+CLICK suggestion
+CLICK destination field
+TYPE destination city
+CLICK suggestion
+CLICK date selector
+CLICK date
+CLICK submit
+
+---
+
+Task: Find trip by confirmation number
+Actions:
+CLICK trip section
+SELECT search type
+TYPE confirmation number
+TYPE first name
+TYPE last name
+CLICK submit
+
+---
+
+Extracted Workflows:
+
+# enter_locations
+CLICK departure field
+TYPE {origin}
+CLICK suggestion
+CLICK destination field
+TYPE {destination}
+CLICK suggestion
+
+# select_trip_type
+CLICK trip type selector
+CLICK {trip_type}
+
+# select_date
+CLICK date selector
+CLICK {date}
+
+# submit_form
+CLICK submit

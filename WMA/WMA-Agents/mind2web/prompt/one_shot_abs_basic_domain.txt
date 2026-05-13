@@ -1,0 +1,56 @@
+## Query 1: Book a cheapest bundle and save option for 2 adults from Ahmedabad to Dubai on April 5 with free cancellation options, including a 3-star hotel near Burj Khalifa with guest rating above 4 for one night.
+
+<Split token>
+
+1. Identify task intent
+   - Determine that the task involves a bundled travel booking
+
+2. Specify mandatory constraints
+   2.1 Transportation constraints
+       - Define origin location
+       - Define destination location
+       - Specify travel date
+
+   2.2 Accommodation constraints
+       - Specify hotel star rating
+       - Specify hotel location preference
+       - Specify minimum guest rating
+       - Specify duration of stay
+
+3. Specify user preferences
+   - Enable free cancellation if available
+   - Prefer bundled offers
+
+4. Execute search
+   - Retrieve all options matching mandatory constraints
+
+5. Optimize results
+   - Rank options by total price in ascending order
+
+6. Finalize booking
+   - Select and confirm the best available bundled option
+
+<Split token>
+
+1. Identify bundled travel booking intent
+   - Recognize tasks that combine transportation and accommodation
+
+2. Apply mandatory constraints
+   2.1 Transportation details
+       - Origin: Ahmedabad
+       - Destination: Dubai
+       - Travel date: April 5
+
+   2.2 Accommodation details
+       - Hotel category: 3-star
+       - Preferred location: near landmark
+       - Minimum guest rating threshold
+       - Stay duration: one night
+
+3. Apply optional preferences
+   - Enable free cancellation
+   - Prefer bundle-and-save offers
+
+4. Rank and select option
+   - Sort by lowest total cost
+   - Select the option that satisfies all constraints and preferences

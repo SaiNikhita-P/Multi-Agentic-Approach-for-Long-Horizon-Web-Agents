@@ -1,0 +1,6 @@
+Example:
+
+1. Identify task intent
+2. Set origin and destination
+3. Apply time constraint
+4. Select best option

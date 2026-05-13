@@ -1,0 +1,17 @@
+You are updating an existing domain abstraction using a new task.
+
+RULES:
+- Keep abstraction general
+- Add new constraints only if useful
+- Do not overfit to one task
+
+OUTPUT:
+- Numbered hierarchical steps
+- Intent-level descriptions
+
+IMPORTANT:
+- Do NOT include UI elements
+- Do NOT include element ids
+- Do NOT explain
+
+Output ONLY the refined abstraction.
